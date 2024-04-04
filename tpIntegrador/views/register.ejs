@@ -9,8 +9,6 @@
 	
 	<%- include('./partials/header') %>
 
-	<!-- /Header -->
-
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
@@ -18,13 +16,32 @@
 				<h2 class="products-title">Registrate</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de registro. <br>
-			Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos <br>
-			Eliminen estás líneas y coloquen el formulario. <br>
-			Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar correctamtente</i> <br>
-			////////////////
-			</h2>
 
+			<div class="col-12">
+				<form action="/registrar" method="GET">
+					<label for="email">Email:</label><br>
+					<input type="email" id="email" name="email" required><br><br>
+
+					<label for="usuario">Usuario:</label><br>
+					<input type="text" id="usuario" name="usuario" required><br><br>
+
+					<label for="contraseña">Contraseña:</label><br>
+					<input type="password" id="contraseña" name="contraseña" required><br><br>
+
+					<label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>
+					<input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+
+					<label for="nro_documento">Número de Documento:</label><br>
+					<input type="number" id="nro_documento" name="nro_documento" required><br><br>
+
+					<label for="foto_perfil">Foto de Perfil (URL):</label><br>
+					<input type="text" id="foto_perfil" name="foto_perfil"><br><br>
+
+					<input type="submit" value="Registrarse">
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<!-- footer -->
 	<%- include('./partials/footer') %>
