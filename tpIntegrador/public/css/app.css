@@ -4,11 +4,11 @@
 
 /*====== Variables ======*/
 :root {
-  --yellow: #EAC926;
+  --yellow: #162a2c;
   --dark-blue: #03264C;
-  --light-blue: #1259c3;
+  --light-blue: #f4efe6;
   --gray: #666666;
-  --light-gray: #ebebeb;
+  --light-gray: #f4efe6;
   --green: #39b54a;
   --base-font-family: 'Roboto', sans-serif
 }
@@ -52,6 +52,7 @@ figure {
 
 img {
   width: 100%;
+  
 }
 
 input,
@@ -130,6 +131,7 @@ hr {
 .left-navbar,
 .right-navbar {
   font-size: 1.5em;
+  color: white;
 }
 
 .logout{
@@ -171,11 +173,11 @@ hr {
 .products-title {
   font-size: 2.4em;
   font-weight: 400;
-  color: var(--gray);
+  color: #162a2c;
 }
 
 .product-box {
-  background-color: #ffffff;
+  background-color: #162a2c;
   border-radius: 5px;
   overflow: hidden;
   transition: 300ms;
@@ -202,6 +204,7 @@ hr {
   font-size: 2.4em;
   font-weight: 300;
   margin: 0;
+  color: #f4efe6;
 }
 
 .product-box_data span {
@@ -214,11 +217,11 @@ hr {
 .product-box_data p {
   font-size: 1.5em;
   width: 100%;
-  color: var(--gray);
   margin: 0;
   height: 0;
   transition: 300ms;
   overflow: hidden;
+  color: #f4efe6;
 }
 
 .product-box_data i {
@@ -250,6 +253,7 @@ hr {
 .product-box:hover p {
   height: 36px;
   margin-top: 15px;
+  color: #f4efe6;
 }
 
 .product-box:hover i {
@@ -259,7 +263,7 @@ hr {
 
 /*====== Footer ======*/
 .main-footer {
-  background-color: #ffffff;
+  background-color: #686867;
   padding: 20px 0;
   margin-top: 80px;
 }
@@ -274,7 +278,7 @@ hr {
 }
 
 .footer-data h2 {
-  color: var(--gray);
+  color: #f4efe6;
   font-size: 2.4em;
   font-weight: 400;
 }
@@ -482,6 +486,7 @@ textarea.form-input {
   .main-header_credit-link {
     margin-top: 0;
     text-align: right;
+    color: white;
   }
 
   .banner {
