@@ -319,6 +319,7 @@ hr {
 .product-detail-info {
   border-right: 1px solid var(--light-gray);
   padding: 15px;
+  background-color: #686867;
   /* height: 100%; */
 }
 
@@ -331,6 +332,7 @@ hr {
   padding: 15px 15px 15px 40px;
   font-size: 1.8em;
   line-height: 1.5;
+  color: #f4efe6;
 }
 
 .product-detail-price {
@@ -341,6 +343,7 @@ hr {
   padding: 0 15px;
   display: flex;
   flex-direction: column;
+  background-color: #686867;
 }
 .small {
   font-size: 1.8em;
@@ -377,11 +380,12 @@ hr {
 .buy-now-button {
   background-color: var(--light-blue);
   font-size: 1.6em;
-  color: #ffffff;
+  color: #03264C;
   padding: 15px;
   border-radius: 8px;
   border: none;
   margin-bottom: 15px;
+
 }
 
 .action-button {
@@ -404,6 +408,7 @@ hr {
 }
 .comments {
   padding: 30px 15px 15px 0;
+  background-color: #686867;
 }
 .comments article{
   margin-bottom: 7.5px;
@@ -427,6 +432,7 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+  color: #f4efe6;
 }
 
 /*====== Formularios ======*/
@@ -446,6 +452,8 @@ hr {
   border: none;
   border: solid 1px var(--gray);
   padding: 0 15px;
+  background-color: #f4efe6;
+
 }
 
 .error{
@@ -473,10 +481,11 @@ textarea.form-input {
 .main-title{
   font-size: 25px;
   margin-bottom: 10px;
+  color: #03264C;
 }
 
 .btn{
-  background-color: #1259c3;
+  background-color: #03264C;
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
