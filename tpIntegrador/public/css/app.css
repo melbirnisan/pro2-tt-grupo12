@@ -10,7 +10,7 @@
   --gray: #f4efe6;
   --light-gray: #f4efe6;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: "Source Serif 4", serif
 }
 
 
@@ -158,7 +158,7 @@ hr {
 
 /*====== Banner ======*/
 .banner {
-  background-image: url(/images/banner-op3.jpeg);
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -379,6 +379,7 @@ hr {
 
 .buy-now-button {
   background-color: var(--light-blue);
+  font-family: var(--base-font-family)
   font-size: 1.6em;
   color: #03264C;
   padding: 15px;
