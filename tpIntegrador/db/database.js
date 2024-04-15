@@ -17,27 +17,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/users/profile4.jpg"
                 }
             ]
         },
@@ -49,27 +49,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/users/profile4.jpg"
                 }
 
             ]
@@ -82,27 +82,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/users/profile4.jpg"
                 }
             ]
         },
@@ -114,27 +114,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/users/profile4.jpg"
                 }
             ]
         },
@@ -146,27 +146,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/users/profile4.jpg"
                 }
             ]
         },
@@ -178,27 +178,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/usersprofile4.jpg"
                 }
             ]
         },
@@ -210,27 +210,27 @@ const datos = {
                 {
                     persona: "valengarcia",
                     texto: "Este vinilo no solo es hermoso esteticamente sino que cada pista es mejor que la anterior. No se lo pierdan!",
-                    imagenPerfil: ".public/images/profile1.jpg"
+                    imagenPerfil: "./public/images/users/profile1.jpg"
                 },
                 {
                     persona: "santiagomartinez",
                     texto: "Me encanto este albúm, me lo compraria en todas las versiones posibles. ",
-                    imagenPerfil: ".public/images/profile2.jpg"
+                    imagenPerfil: "./public/images/users/profile2.jpg"
                 },
                 {
                     persona: "sofiramirez",
                     texto: "El único vinilo que me faltaba para completa la colección de este artista. No sólo recomiendo el album sino que la página tambien! Muchas gracias! Volveré a comprar si o si.",
-                    imagenPerfil: ".public/images/profile3.jpg"
+                    imagenPerfil: "./public/images/users/profile3.jpg"
                 },
                 {
                     persona: "nicosuarez",
                     texto: "Los colores de los vinilos son hermosos, esta edición limitada es perfecta. Lo volveria a comprar!",
-                    imagenPerfil: ".public/images/profile5.jpg"
+                    imagenPerfil: "./public/images/users/profile5.jpg"
                 },
                  {
                     persona: "isalopez",
                     texto: "Este albúm me transporto a otro mundo. tengo la portada del vinilo colgada en mi cuarto y la musica puesta las 24hs del dia.",
-                    imagenPerfil: ".public/images/profile4.jpg"
+                    imagenPerfil: "./public/images/users/profile4.jpg"
                 }
             ]
         },
