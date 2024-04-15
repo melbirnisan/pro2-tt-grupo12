@@ -65,6 +65,19 @@
 		</div>
 	</header>
 	<!-- /Header -->
+	<form action="/product/add" method="GET">
+		<label for="imagen">Imagen:</label><br>
+	   <input type="file" id="imagen" name="imagen" required><br><br>
+
+
+		<label for="usuario">Nombre del producto:</label><br>
+		<input type="text" id="nombre" name="nombre" required><br><br>
+
+
+		<label for="descripcion">Descripción del producto:</label><br>
+		<textarea id="descripcion" name="descripcion" rows =”4” cols =”50” required> </textarea><br><br> 
+		<input type="submit" value="Agregar Producto"> <br><br>
+	</form>
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
