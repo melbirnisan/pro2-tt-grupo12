@@ -1,3 +1,4 @@
+const datos = require("../db/database");
 const userController = {
     register: function(req,res){
         return res.render('register')
@@ -6,10 +7,10 @@ const userController = {
         return res.render('login')
     },
     profile: function (req, res) {
-        return res.render("profile");
+        return res.render("profile", {profile : datos.usuario} );
       }, 
     edit: function (req,res) {
-        return res.render('profile-edit')
+        return res.render('profile-edit', {profile : datos.usuario})
     }
 };
 

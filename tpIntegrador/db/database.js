@@ -5,7 +5,7 @@ const datos = {
         contra: "123456",
         fecha: "09/19/2004",
         dni: "47974628",
-        fotoPerfil: '.public/images/profile.jpg'
+        fotoPerfil: "/images/users/profile.jpg"
     },
 
     productos: [

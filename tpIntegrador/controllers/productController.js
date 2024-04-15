@@ -1,9 +1,11 @@
+const datos = require("../db/database");
+
 const productController = {
     product: function(req,res){
-        return res.render('product')
+        return res.render('product', {profile : datos.usuario})
     },
     add: function(req,res){
-        return res.render('product-add')
+        return res.render('product-add', {profile : datos.usuario})
     },
 };
 
