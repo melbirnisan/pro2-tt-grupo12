@@ -335,6 +335,10 @@ hr {
   color: #f4efe6;
 }
 
+.editar{
+  color: #162a2c;
+}
+
 .product-detail-price {
   font-size: 5.5em;
   margin: 10px 0;
@@ -383,10 +387,9 @@ hr {
   font-size: 1.6em;
   color: #03264C;
   padding: 15px;
-  border-radius: 8px;
+  border-radius : 8px;
   border: none;
   margin-bottom: 15px;
-
 }
 
 .action-button {
