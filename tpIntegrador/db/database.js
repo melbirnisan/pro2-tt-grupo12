@@ -1,6 +1,6 @@
 const datos = {
     usuario:{
-        email: "solymel@gmail.com",
+        mail: "solymel@gmail.com",
         usuario: "solymel",
         contra: "123456",
         fecha: "07/19/2004",

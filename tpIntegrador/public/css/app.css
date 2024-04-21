@@ -19,7 +19,8 @@
   box-sizing: border-box;
 }
 p {
-  font-family: serif
+  font-family: serif;
+  color: #162a2c;
 
 }
 
@@ -118,7 +119,7 @@ hr {
 
 /*====== Main Navbar ======*/
 .btn-toggle-navbar {
-  background-color: var(--dark-blue);
+  background-color: #162a2c;
   color: #ffffff;
   font-size: 1.5em;
   border: none;
@@ -492,11 +493,11 @@ textarea.form-input {
 .main-title{
   font-size: 25px;
   margin-bottom: 10px;
-  color: #03264C;
+  color: #162a2c;
 }
 
 .btn{
-  background-color: #03264C;
+  background-color: #162a2c;
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
