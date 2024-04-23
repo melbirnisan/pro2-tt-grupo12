@@ -389,13 +389,13 @@ hr {
 
 .buy-now-button {
   background-color: var(--light-blue);
-  font-family: var(--base-font-family)
+  font-family: var(--base-font-family);
   font-size: 1.6em;
   color: #03264C;
   padding: 15px;
-  border-radius : 8px;
+  border-radius: 8px;
   border: none;
-  margin-bottom: 15px;
+  margin-bottom:15px;
 }
 
 .action-button {
