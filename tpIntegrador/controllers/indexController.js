@@ -1,5 +1,4 @@
-const datos = require("../db/database");
-
+const datos = require("../database/models" );
 const indexController = {
     index: function (req, res) {
         return res.render("index", { productos : datos.productos});
