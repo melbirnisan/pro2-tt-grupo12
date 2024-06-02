@@ -23,17 +23,17 @@
 				<h2 class="products-title">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% for (let i = 0; i <4; i++) {%>
+			<% productos.forEach(function(producto, index)){%>
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
 					<a href="/product">
 						<figure class="product-box_image">
-							<img src="<%=productos[i].imagen%>" alt="cafetera moulinex">
+							<img src="<%=productos[i].imagen%>" alt="producto">
 						</figure>
 						<article class="product-box_data">
-							<h2><%= productos[i].nombre%></h2> 
-							<p><%= productos[i].descripcion%></p>
-							<p>Comentarios: <%= productos[i].comentarios.length%></p>
+							<h2><%= productos.nombre%></h2> 
+							<p><%= productos.descripcion%></p>
+							<p>Comentarios: <%= productos.comentarios.length%></p>
 						</article>
 					</a>
 				</section>
