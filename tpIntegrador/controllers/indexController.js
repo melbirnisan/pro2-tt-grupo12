@@ -3,6 +3,7 @@ const indexController = {
     index: function (req, res) {
         datos.Producto.findAll()
         .then(function(results){
+          //return res.send(results)
           return res.render("index", { productos : results });
         })
         .catch(function(error){
