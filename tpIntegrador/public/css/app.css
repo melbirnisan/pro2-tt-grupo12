@@ -269,6 +269,11 @@ hr {
   box-shadow: 0 0 5px var(--green);
 }
 
+.noresultado {
+  text-align: center;
+  font-size: large;
+}
+
 /*====== Footer ======*/
 .main-footer {
   background-color: #686867;

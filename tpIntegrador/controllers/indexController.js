@@ -5,7 +5,7 @@ const indexController = {
     index: function (req, res) {
 
       let filtrado = {
-        order : [["nombreProducto", "ASC"]]
+        order : [["createdAt", "DESC"]]
       }
 
         datos.Producto.findAll(filtrado)
@@ -20,12 +20,15 @@ const indexController = {
       },
       search: function (req, res) {
 
-        let buscado = req.query.search;
+        let buscado = req.query.search; // se pone .search porque asi es el name en el form
 
         let filtrado = {
           where: {
-            nombreProducto: {[op.like]: "%" + buscado + "%"}
-          }
+            [op.or]: [
+              {nombreProducto: { [op.like]: "%" + buscado + "%"}},
+              {descripcion: { [op.like]: "%" + buscado + "%"}}]          
+            }, 
+          order : [["createdAt", "DESC"]]
         }
 
         datos.Producto.findAll(filtrado)
@@ -37,6 +40,7 @@ const indexController = {
           console.log(error);
         })
       },
+
     };
 
   module.exports = indexController;

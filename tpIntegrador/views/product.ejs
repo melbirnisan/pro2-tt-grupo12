@@ -13,8 +13,10 @@
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"> <%= productos.nombreProducto%></h2> 
 			<p class="product-detail-description">
-				<a class ="editar" href="/product/add">Editar</a>
-			</p>
+				<form action="/product/editProduct" method="post">
+					<input type="hidden" name="id" value="<%= productos.id%>">
+					<button type="submit"><a>Editar</a></button>
+				</form> 			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
