@@ -4,9 +4,15 @@ const op = datos.Sequelize.Op
 const productController = {
     index: function(req,res){
 
-        const id = req.params.id;
+        let id = req.params.id;
+        let criterio = {
+            include: [
+              {association: "usuario"}, 
+              {association: "comentarios"}
+            ]
+        }
 
-        datos.Producto.findByPk(id) 
+        datos.Producto.findByPk(id, criterio) 
         .then(function (results) {
             return res.render('product', { productos: results });
         })
