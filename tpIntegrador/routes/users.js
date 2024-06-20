@@ -41,4 +41,6 @@ router.get('/profile-edit/:idPerfil', userController.edit);
 // POST para actualizar perfil
 router.post("/update", validations, userController.update);
 
+router.post('/logout', userController.logout);
+
 module.exports = router;

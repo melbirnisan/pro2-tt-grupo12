@@ -35,7 +35,6 @@ const users = {
     datos.Usuario.findOne(filtro)
       .then((result) => {
         if (result != null) {
-          console.log(form, result.contrasenia)
           let comparacion = bcrypt.compareSync(form.contrasenia, result.contrasenia);
 
           if (comparacion) {
@@ -115,6 +114,12 @@ const users = {
       });
     }
   },
+  logout: function(req, res, next) {
+    req.session.destroy()
+    res.clearCookie("idUsuario")
+    return res.redirect("/");
+},
+   
 
 };
 
