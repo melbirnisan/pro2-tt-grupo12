@@ -113,11 +113,7 @@ const users = {
       });
     }
   },
-  logout: (req, res) => {
-    req.session.destroy();
-    res.clearCookie("idUsuario");
-    return res.redirect("/");
-  }
+
 };
 
 /* exportar el modulo */

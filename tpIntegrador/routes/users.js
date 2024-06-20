@@ -27,8 +27,7 @@ router.get('/login', userController.login);
 // POST de login
 router.post("/login", userController.loginUser);
 
-// logout
-router.post('/logout', userController.logout);
+
 
 /* GET para mostrar formulario register */
 router.get('/register', userController.register);
