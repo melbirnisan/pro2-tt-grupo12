@@ -8,7 +8,10 @@ const productController = {
         let criterio = {
             include: [
               {association: "usuario"}, 
-              {association: "comentarios"}
+              {association: "comentarios", 
+                include: [
+                    {association: "usuario"}
+                ] }
             ]
         }
 

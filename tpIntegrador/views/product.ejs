@@ -5,10 +5,15 @@
 
 <body>
 	<!-- Header -->
-	<%- include('./partials/header') %>
+	<% if (locals.user != undefined) { %>
+		<%- include('./partials/headerLogueado') %>
+	<% } else { %>
+		<%- include('./partials/header') %>
+	<% } %>	
 	<!-- /Header -->
 	
 	<!-- product detail -->
+	<% console.log(productos.comentarios)%>
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"> <%= productos.nombreProducto%></h2> 
@@ -26,13 +31,13 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for (let i = 0; i < productos.length; i++) {%>
+						<% for (let i = 0; i < productos.comentarios.length; i++) {%>
 						<article>
-							<img src="<%=productos[i].comentarios[i].imagenPerfil%>" alt="">
+							<img src="<%=productos.comentarios[i].usuario.fotoPerfil%>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/users/profile"><%=productos.comentario[i].persona %>: </a> </strong>
-								 <%= productos[1].comentarios[i].texto%></p>
+								<strong> <a href="/users/profile"><%=productos.comentarios[i].usuario.nombre %>: </a> </strong>
+								 <%= productos.comentarios[i].textoComentario%></p>
 								 
 							</div>
 						</article>

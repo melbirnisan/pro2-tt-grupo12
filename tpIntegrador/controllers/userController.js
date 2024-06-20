@@ -35,7 +35,8 @@ const users = {
     datos.Usuario.findOne(filtro)
       .then((result) => {
         if (result != null) {
-          let comparacion = bcrypt.compareSync(form.contra, result.contra);
+          console.log(form, result.contrasenia)
+          let comparacion = bcrypt.compareSync(form.contrasenia, result.contrasenia);
 
           if (comparacion) {
             req.session.user = result;
@@ -68,11 +69,12 @@ const users = {
     let errors = validationResult(req);
     if (errors.isEmpty()) {
       let form = req.body;
+      console.log(form)
       let usuario = {
         mail: form.mail,
-        contra: bcrypt.hashSync(form.contra, 10),
+        contrasenia: bcrypt.hashSync(form.contra, 10),
         nombre: form.nombre,
-        fecha: form.fecha,
+        fechaNacimiento: form.fecha,
         dni: form.dni,
         fotoPerfil: form.fotoPerfil
       };

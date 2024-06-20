@@ -9,7 +9,7 @@ module.exports = function (sequelize, dataTypes ) {
         mail: {
             type : dataTypes.STRING
         },
-        usuario: {
+        nombre: {
             type : dataTypes.STRING
         },
         contrasenia: {
@@ -18,10 +18,10 @@ module.exports = function (sequelize, dataTypes ) {
         fechaNacimiento: {
             type : dataTypes.DATE
         },
-        numeroDocumento: {
+        dni: {
             type : dataTypes.INTEGER
         },
-        foto: {
+        fotoPerfil: {
             type : dataTypes.STRING
         },
         createdAt: {
