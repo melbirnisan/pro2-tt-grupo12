@@ -27,7 +27,12 @@
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%=productos.fotoProducto%>" alt="" class="product-detail-img">
-					<p class="product-detail-description"> <%= productos.descripcion%></p>
+					<p class="product-detail-description"> <%= productos.descripcion%>
+						<br><br> Subido por: <strong><a href="/users/profile/id/<%= productos.usuario.id %>"><%= productos.usuario.nombre %></a></strong>
+						</br>
+
+					</p>
+
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">

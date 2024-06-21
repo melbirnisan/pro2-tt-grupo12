@@ -21,6 +21,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/profile', userController.index); // Usa el nombre correcto del controlador
 
+router.get('/profile/id/:id', userController.index);
+
 /* LOGIN mostrar formulario */
 router.get('/login', userController.login);
 
