@@ -44,10 +44,12 @@ const users = {
             }
             return res.redirect("/");
           } else {
-            return res.send("Error en la contraseña");
+            
+            return res.render("login", { title: "Ingresar", error: "Error en la contraseña" });
           }
         } else {
-          return res.send("No hay mail parecidos a: " + form.mail);
+          
+          return res.render("login", { title: "Ingresar", error: "Usuario no encontrado" });
         }
       }).catch((err) => {
         return console.log(err);
@@ -66,26 +68,46 @@ const users = {
   },
   store: function (req, res) {
     let errors = validationResult(req);
+
     if (errors.isEmpty()) {
       let form = req.body;
-      console.log(form)
-      let usuario = {
-        mail: form.mail,
-        contrasenia: bcrypt.hashSync(form.contra, 10),
-        nombre: form.nombre,
-        fechaNacimiento: form.fecha,
-        dni: form.dni,
-        fotoPerfil: form.fotoPerfil
-      };
-      datos.Usuario.create(usuario)
-        .then((result) => {
-          return res.redirect("/users/login");
-        }).catch((err) => {
+
+      
+      datos.Usuario.findOne({ where: { mail: form.mail } })
+        .then(existingUser => {
+          if (existingUser) {
+            
+            return res.render("register", {
+              title: "Registrarse",
+              error: "Este mail ya ha sido utilizado",
+              old: req.body
+            });
+          } else {
+            
+            let usuario = {
+              mail: form.mail,
+              contrasenia: bcrypt.hashSync(form.contra, 10),
+              nombre: form.nombre,
+              fechaNacimiento: form.fecha,
+              dni: form.dni,
+              fotoPerfil: form.fotoPerfil,
+              createdAt: new Date() 
+            };
+            datos.Usuario.create(usuario)
+              .then((result) => {
+                return res.redirect("/users/login");
+              }).catch((err) => {
+                return console.log(err);
+              });
+          }
+        }).catch(err => {
           return console.log(err);
         });
     } else {
+      
       return res.render("register", {
-        errors: errors.mapped(),
+        title: "Registrarse",
+        errors: errors.array(),
         old: req.body
       });
     }
