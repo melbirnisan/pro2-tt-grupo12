@@ -45,6 +45,8 @@ router.post("/update", validations, userController.update);
 
 router.post('/logout', userController.logout);
 
+router.get('/profile', userController.index);
+
 router.get('/profile/id/:id', userController.otherProfile);
 
 module.exports = router;

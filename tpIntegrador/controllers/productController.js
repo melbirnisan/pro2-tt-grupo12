@@ -13,15 +13,23 @@ const productController = {
                 include: [
                     {association: "usuario"}
                 ] }
-            ]
+            ], 
+            order: [[{model: datos.Comentario, as: 'comentarios'}, 'createdAt', 'DESC']]
         }
 
+        let condition = false;
+
         datos.Producto.findByPk(id, criterio) 
-        .then(function (results) {
-            return res.render('product', { productos: results });
+        .then(function(results){
+
+            if (req.session.user != undefined && req.session.user.id == results.usuario.id) {
+                condition = true;
+            }
+
+            return res.render('product', {title:"Product", productos: results, comentarios: results.comentarios, condition: condition});
         })
-        .catch(function (error) {
-            return console.log(error);
+        .catch(function(error){
+            console.log(error);
         });
     },
 
@@ -54,6 +62,35 @@ const productController = {
             return res.redirect("/users/login");
         }
     },
+    delete: function(req, res) {
+        let form = req.body;
+        
+        let filtrado = {
+          where: {
+            id: form.id
+          }
+        }
+
+        if (req.session.user != undefined) {
+            let id = req.session.user.id;
+            if (form.idUsuario == id) {
+                datos.Producto.destroy(filtrado)
+                .then((result) => {
+                  return res.redirect("/");
+                })
+                .catch((err) => {
+                  return console.log(err);
+                });
+            }
+            else{
+                return res.redirect("/users/profile/id/" + id);
+            }
+        }
+        else{
+            return res.redirect("/users/login");
+        }     }
+
+    
 };
 
 module.exports = productController;

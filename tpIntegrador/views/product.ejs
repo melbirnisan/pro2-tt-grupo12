@@ -16,8 +16,8 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"> <%= productos.nombreProducto%></h2> 
-			
-			<br><br> <p class="product-detail-description">
+			<% if (condition) {%>
+				<br><br> <p class="product-detail-description">
 				<form action="/product/editProduct" method="post">
 					<input type="hidden" name="id" value="<%= productos.id%>">
 					<button class="editButton" type="submit"><a>Editar</a></button>
@@ -28,16 +28,19 @@
 					<input type="hidden" name="idUsuario" value="<%= productos.usuario.id%>">
 					<button class="deleteButton" type="submit"><a>Eliminar</a></button>
 				</form>
-			
 			</p>
+			<%}%>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%=productos.fotoProducto%>" alt="" class="product-detail-img">
 					<p class="product-detail-description"> <%= productos.descripcion%>
+						<%if (!condition){ %>
 						<br><br> Subido Por: <strong><a href="/users/profile/id/<%= productos.usuario.id %>"><%= productos.usuario.nombre %></a></strong>
 						</br>
+						<%}%>
+
 
 					</p>
 
@@ -49,12 +52,26 @@
 							<img class ="comsImage" src="<%=productos.comentarios[i].usuario.fotoPerfil%>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/users/profile"><%=productos.comentarios[i].usuario.nombre %>: </a> </strong>
+								<strong> <a href="/users/profile/id/<%= productos.comentarios[i].usuario.id %>"><%=productos.comentarios[i].usuario.nombre %>: </a> </strong>
 								 <%= productos.comentarios[i].textoComentario%></p>
-								 
 							</div>
 						</article>
 						<%}%>
+					</section>
+					<% if (locals.user != undefined) { %>
+					<form action="/product/delete" method="post">
+						<input type="hidden" name="id" value="<%= productos.id%>">
+						<input type="hidden" name="idUsuario" value="<%= productos.usuario.id%>">
+						<button class="deleteButton" type="submit"><a>Agregar Comentario</a></button>
+					</form>
+					<% if (locals.errors && locals.errors.comentario) { %>
+						<p ><%= locals.errors.comentario.msg %></p><br>
+					<% } %>
+					<% } else { %>
+                        <div >
+                            <a class ="comButton" href="/users/login">Debes estar logueado para comentar</a>
+                        </div>
+                    <% } %>
 					<hr>
 				</div>
 			</div>

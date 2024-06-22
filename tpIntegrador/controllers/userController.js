@@ -14,7 +14,7 @@ const users = {
     };
     datos.Usuario.findAll(criterio)
       .then(function (respuesta) {
-        res.render('profile', { usuario: respuesta[0], productos: respuesta[0].producto, title: 'Profile' });
+        res.render('profile', { usuario: respuesta[0], productos: respuesta[0].productos, title: 'Profile' });
       })
       .catch(function (error) {
         return console.log(error);
@@ -29,7 +29,7 @@ const users = {
           {association: "comentarios"}
       ] 
         }
-      ],
+      ],   
       where: {
         id: req.params.id
       }

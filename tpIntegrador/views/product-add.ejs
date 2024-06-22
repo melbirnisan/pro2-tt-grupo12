@@ -26,7 +26,7 @@
 				<input type="hidden" name="idUsuario" value="<%= locals.user.id %>">
 
 				<label for="imagen">Imagen:</label><br>
-			   <input type="file" id="imagen" name="fotoProducto" required><br><br>
+			   <input type="text" id="imagen" name="fotoProducto" required><br><br>
 			   <% if (locals.errors && errors.fotoProducto) { %>
 				<p> <%= errors.fotoProducto.msg %> </p>
 				<% } %>	
