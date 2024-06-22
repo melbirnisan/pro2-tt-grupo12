@@ -6,7 +6,7 @@ const users = {
   index: function (req, res, next) {
     let criterio = {
       include: [
-        { association: "producto" }
+        { association: "productos" }
       ],
       where: {
         id: req.session.user.id
@@ -15,6 +15,28 @@ const users = {
     datos.Usuario.findAll(criterio)
       .then(function (respuesta) {
         res.render('profile', { usuario: respuesta[0], productos: respuesta[0].producto, title: 'Profile' });
+      })
+      .catch(function (error) {
+        return console.log(error);
+      });
+  },
+
+  otherProfile: function (req, res, next) {
+    let criterio = {
+      include: [
+        { association: "productos",  
+          include: [
+          {association: "comentarios"}
+      ] 
+        }
+      ],
+      where: {
+        id: req.params.id
+      }
+    };
+    datos.Usuario.findAll(criterio)
+      .then(function (respuesta) {
+        res.render('profile', { usuario: respuesta[0], productos: respuesta[0].productos, title: 'Profile' });
       })
       .catch(function (error) {
         return console.log(error);

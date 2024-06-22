@@ -7,43 +7,71 @@
 <body>
 	<!-- Header -->
 
-	<%- include('./partials/headerLogueado') %>
-
+	<% if (locals.user != undefined) { %>
+		<%- include('./partials/headerLogueado') %>
+	<% } else { %>
+		<%- include('./partials/header') %>
+	<% } %>
 	<!-- /Header -->
 
-	<!-- Novedades -->
+	<!-- Datos del usuario -->
+	<section class="info-usuario container products-wrapper">
+		<div class="row">
+			<div class="img-container offset-3 col-2">
+				<img src="<%= usuario.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+			</div>
+			<div class="data-container col-6">
+				<div class="d-flex align-items-center ">
+					<h1 class="main-title"> <%= usuario.nombre %>
+						<a href="/users/profile">
+							<i class="fas fa-cog"></i>
+						</a>
+					</h1>
+					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
+				</div>
+				<div>
+					<p><%= usuario.mail %></p>
+					<ul class="">
+						<li>8 productos</li>
+						<li>200 seguidores</li>
+						<li>300 comentarios</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Datos del usuario -->
+
+	<!-- Mis productos -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Editar mi perfil</h2>
+				<h2 class="products-title">Mis productos</h2>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<form action="/registrar" method="GET">
-				<label for="email"> Nuevo Email:</label><br>
-				<input type="email" id="email" name="email" required><br><br>
-
-				<label for="usuario">Nuevo Usuario:</label><br>
-				<input type="text" id="usuario" name="usuario" required><br><br>
-
-				<label for="contraseña"> Nueva Contraseña:</label><br>
-				<input type="password" id="contraseña" name="contraseña" required><br><br>
-
-				<label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>
-				<input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
-
-				<label for="nro_documento">Número de Documento:</label><br>
-				<input type="number" id="nro_documento" name="nro_documento" required><br><br>
-
-				<label for="foto_perfil">Nueva Foto de Perfil (URL):</label><br>
-				<input type="text" id="foto_perfil" name="foto_perfil"><br><br>
-
-				<input type="submit" value="Registrarse">
-			</form>
+			<!-- Show mis productos -->
+			<% for (let i = 0; i < productos.length; i++) {%>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/product/id/<%=productos[i].id%>">
+							<figure class="product-box_image">
+								<img src="<%=productos[i].fotoProducto%>" alt="cafetera moulinex">
+							</figure>
+							<article class="product-box_data">
+								<h2><%= productos[i].nombre%></h2> 
+								<p><%= productos[i].descripcion%></p>
+								<p>Comentarios: <%= productos[i].comentarios.length%></p>
+							</article>
+						</a>
+					</section>
+				</div>
+				<%}%>
+		</div>
+	</div>
+	<!-- /Mis productos -->
 
 
 	<!-- footer -->
 	<%- include('./partials/footer') %>
 	<!-- /footer -->
-</body>
-
+</body>	
 </html>
