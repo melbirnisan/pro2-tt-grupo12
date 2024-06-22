@@ -11,22 +11,23 @@
   <!-- /Header -->
 
   <!-- Formulario de login -->
+   <br>
   <div class="container">
-    <h2>Ingresar</h2>
+    <h2 class ="login">Ingresar</h2>
     <% if (locals.error) { %>
       <p class="error"><%= locals.error %></p>
     <% } %>
     <form action="/users/login" method="POST">
-      <label for="mail">Email:</label><br>
-      <input type="email" id="mail" name="mail" required><br><br>
+      <label class ="textLogin" for="mail">Email:</label><br>
+      <input class ="enterLogin" type="email" id="mail" name="mail" required><br><br>
 
-      <label for="contrasenia">Contraseña:</label><br>
-      <input type="password" id="contrasenia" name="contrasenia" required><br><br>
+      <label class ="textLogin" for="contrasenia">Contraseña:</label><br>
+      <input class ="enterLogin" type="password" id="contrasenia" name="contrasenia" required><br><br>
 
-      <input type="checkbox" id="recordarme" name="recordarme">
-      <label for="recordarme">Recordarme</label><br><br>
+      <input class ="textLogin" type="checkbox" id="recordarme" name="recordarme">
+      <label class ="enterLogin" for="recordarme">Recordarme</label><br><br>
 
-      <input type="submit" value="Iniciar Sesión">
+      <input class = "loginButton" type="submit" value="Iniciar Sesión">
     </form>
   </div>
 

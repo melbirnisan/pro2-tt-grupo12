@@ -16,18 +16,27 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"> <%= productos.nombreProducto%></h2> 
-			<p class="product-detail-description">
+			
+			<br><br> <p class="product-detail-description">
 				<form action="/product/editProduct" method="post">
 					<input type="hidden" name="id" value="<%= productos.id%>">
-					<button type="submit"><a>Editar</a></button>
-				</form> 			</p>
+					<button class="editButton" type="submit"><a>Editar</a></button>
+				</form> 
+			
+				<form action="/product/delete" method="post">
+					<input type="hidden" name="id" value="<%= productos.id%>">
+					<input type="hidden" name="idUsuario" value="<%= productos.usuario.id%>">
+					<button class="deleteButton" type="submit"><a>Eliminar</a></button>
+				</form>
+			
+			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%=productos.fotoProducto%>" alt="" class="product-detail-img">
 					<p class="product-detail-description"> <%= productos.descripcion%>
-						<br><br> Subido por: <strong><a href="/users/profile/id/<%= productos.usuario.id %>"><%= productos.usuario.nombre %></a></strong>
+						<br><br> Subido Por: <strong><a href="/users/profile/id/<%= productos.usuario.id %>"><%= productos.usuario.nombre %></a></strong>
 						</br>
 
 					</p>
@@ -36,8 +45,8 @@
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<% for (let i = 0; i < productos.comentarios.length; i++) {%>
-						<article>
-							<img src="<%=productos.comentarios[i].usuario.fotoPerfil%>" alt="">
+						<article >
+							<img class ="comsImage" src="<%=productos.comentarios[i].usuario.fotoPerfil%>" alt="">
 							<div class="data">
 								<p class="user">
 								<strong> <a href="/users/profile"><%=productos.comentarios[i].usuario.nombre %>: </a> </strong>

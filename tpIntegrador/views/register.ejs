@@ -12,7 +12,8 @@
 
   <!-- Formulario de registro -->
   <div class="container">
-    <h2>Registrate</h2>
+    <br> 
+    <h2 class = "register">Registrate</h2>
     <% if (locals.error) { %>
       <p class="error"><%= locals.error %></p>
     <% } %>
@@ -24,24 +25,24 @@
     <form action="/users/register" method="POST">
       <div>
         <input id="mail" type="email" name="mail" value="<%= locals.old ? locals.old.mail : '' %>" placeholder="Email" required>
-      </div>
+      </div> <br> 
       <div>
         <input id="nombre" type="text" name="nombre" value="<%= locals.old ? locals.old.nombre : '' %>" placeholder="Usuario" required>
-      </div>
+      </div> <br> 
       <div>
         <input id="contra" type="password" name="contra" value="" placeholder="Contraseña" required>
-      </div>
+      </div> <br> 
       <div>
         <input id="fecha" type="date" name="fecha" value="<%= locals.old ? locals.old.fecha : '' %>" placeholder="Fecha de Nacimiento">
-      </div>
+      </div> <br> 
       <div>
         <input id="dni" type="number" name="dni" value="<%= locals.old ? locals.old.dni : '' %>" placeholder="DNI">
-      </div>
+      </div> <br> 
       <div>
         <input id="fotoPerfil" type="text" name="fotoPerfil" value="<%= locals.old ? locals.old.fotoPerfil : '' %>" placeholder="Foto de Perfil">
-      </div>
+      </div> <br> 
       <div>
-        <button type="submit">Enviar</button>
+        <button class = "registerButton" type="submit">Enviar</button> 
       </div>
     </form>
   </div>
