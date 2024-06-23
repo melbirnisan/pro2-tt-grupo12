@@ -61,7 +61,7 @@
 					<% if (locals.user != undefined) { %>
 						<br>
 						<form action="/product/id/<%= productos.id %>" method="post">
-							<input class ="enterLogin" type="text" required value="" placeholder="Comentario"><br>
+							<input class ="enterLogin" type="text" required value="" name ="comentario" placeholder="Comentario"><br>
 							<button type="submit" class="deleteButton">Agregar Comentario</button>
 						</form>
 					<% if (locals.errors && locals.errors.comentario) { %>

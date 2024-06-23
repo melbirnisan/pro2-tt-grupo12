@@ -11,7 +11,7 @@ const validations = [
         .notEmpty().withMessage("El campo imagen es obligatorio, ingresa una imagen.").bail(),
 ]
 const comsValidations = [
-    body("textoComentario")
+    body("comentario")
     .notEmpty().withMessage("El campo comentario no puede estar vacio.").bail()
     .isLength({min:3}).withMessage("Debe tener minimo 3 caracteres")
 ]

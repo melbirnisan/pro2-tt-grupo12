@@ -65,7 +65,6 @@ const productController = {
    
     delete: function(req, res) {
         let form = req.body;
-        
         let filtrado = {
           where: {
             id: form.id
@@ -89,7 +88,8 @@ const productController = {
         }
         else{
             return res.redirect("/users/login");
-        }     },
+        }     
+    },
         
         addComment: function(req,res) {
             let form = req.body;
@@ -99,10 +99,9 @@ const productController = {
                 let comentario = {
                     idUsuario: req.session.user.id,
                     idProducto: req.params.id,
-                    comentario: form.comentario
+                    textoComentario: form.comentario
                 }
                 
-        
                 datos.Comentario.create(comentario)
                 .then((result) => {
                     return res.redirect("/product/id/" + req.params.id)
