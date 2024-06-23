@@ -24,5 +24,7 @@ router.post("/add", validations, productController.store)
 
 router.post("/delete", productController.delete);
 
+router.post("/id/:id", comsValidations, productController.addComment)
+
 
 module.exports = router; 

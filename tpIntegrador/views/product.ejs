@@ -59,11 +59,11 @@
 						<%}%>
 					</section>
 					<% if (locals.user != undefined) { %>
-					<form action="/product/delete" method="post">
-						<input type="hidden" name="id" value="<%= productos.id%>">
-						<input type="hidden" name="idUsuario" value="<%= productos.usuario.id%>">
-						<button class="deleteButton" type="submit"><a>Agregar Comentario</a></button>
-					</form>
+						<br>
+						<form action="/product/id/<%= productos.id %>" method="post">
+							<input class ="enterLogin" type="text" required value="" placeholder="Comentario"><br>
+							<button type="submit" class="deleteButton">Agregar Comentario</button>
+						</form>
 					<% if (locals.errors && locals.errors.comentario) { %>
 						<p ><%= locals.errors.comentario.msg %></p><br>
 					<% } %>
