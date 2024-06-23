@@ -4,17 +4,16 @@ const { validationResult } = require("express-validator");
 
 const users = {
   index: function (req, res, next) {
+    let id = req.params.id
     let criterio = {
       include: [
-        { association: "productos" }
-      ],
-      where: {
-        id: req.session.user.id
-      }
+        { association: "productos" },
+        { association: "comentarios"}
+      ]
     };
-    datos.Usuario.findAll(criterio)
+    datos.Usuario.findByPk(id, criterio)
       .then(function (respuesta) {
-        res.render('profile', { usuario: respuesta[0], productos: respuesta[0].productos, title: 'Profile' });
+        res.render('profile', { usuario: respuesta, productos: respuesta.productos, title: 'Profile' });
       })
       .catch(function (error) {
         return console.log(error);
