@@ -4,11 +4,11 @@ const { validationResult } = require("express-validator");
 
 const users = {
   index: function (req, res, next) {
-    let id = req.params.id
+    let id = req.params.id;
     let criterio = {
       include: [
         { association: "productos" },
-        { association: "comentarios"}
+        { association: "comentarios" }
       ]
     };
     datos.Usuario.findByPk(id, criterio)
@@ -50,7 +50,7 @@ const users = {
   loginUser: function (req, res) {
     let form = req.body;
     let filtro = {
-      where: [{ mail: form.mail }]
+      where: { mail: form.mail }
     };
 
     datos.Usuario.findOne(filtro)
@@ -65,11 +65,9 @@ const users = {
             }
             return res.redirect("/");
           } else {
-            
             return res.render("login", { title: "Ingresar", error: "Error en la contraseña" });
           }
         } else {
-          
           return res.render("login", { title: "Ingresar", error: "Usuario no encontrado" });
         }
       }).catch((err) => {
@@ -93,18 +91,15 @@ const users = {
     if (errors.isEmpty()) {
       let form = req.body;
 
-      
       datos.Usuario.findOne({ where: { mail: form.mail } })
         .then(existingUser => {
           if (existingUser) {
-            
             return res.render("register", {
               title: "Registrarse",
               error: "Este mail ya ha sido utilizado",
               old: req.body
             });
           } else {
-            
             let usuario = {
               mail: form.mail,
               contrasenia: bcrypt.hashSync(form.contra, 10),
@@ -112,7 +107,7 @@ const users = {
               fechaNacimiento: form.fecha,
               dni: form.dni,
               fotoPerfil: form.fotoPerfil,
-              createdAt: new Date() 
+              createdAt: new Date()
             };
             datos.Usuario.create(usuario)
               .then((result) => {
@@ -125,7 +120,6 @@ const users = {
           return console.log(err);
         });
     } else {
-      
       return res.render("register", {
         title: "Registrarse",
         errors: errors.array(),
@@ -137,15 +131,21 @@ const users = {
     let errors = validationResult(req);
     if (errors.isEmpty()) {
       let form = req.body;
+      let updateData = {
+        nombre: form.nombre,
+        mail: form.mail,
+      };
+      if (form.contra) {
+        updateData.contrasenia = bcrypt.hashSync(form.contra, 10);
+      }
       let filtrado = {
         where: {
           id: form.id
         }
       };
-      datos.Usuario.update(form, filtrado)
+      datos.Usuario.update(updateData, filtrado)
         .then(function (result) {
-          return res.send(result);
-          return res.redirect("/profile/id/" + form.id);
+          return res.redirect("/users/profile/id/" + form.id);
         })
         .catch(function (err) {
           return console.log(err);
@@ -153,18 +153,18 @@ const users = {
     } else {
       return res.render("profile-edit", {
         errors: errors.mapped(),
-        old: req.body
+        old: req.body,
+        perfil: req.body
       });
     }
   },
-  logout: function(req, res, next) {
+  logout: function (req, res, next) {
     req.session.destroy()
     res.clearCookie("idUsuario")
     return res.redirect("/");
-},
-   
-
+  },
 };
 
 /* exportar el modulo */
 module.exports = users;
+

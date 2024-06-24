@@ -1,52 +1,53 @@
 var express = require('express');
 var router = express.Router();
-const userController = require('../controllers/userController'); // Asegúrate de que este es el nombre correcto
+const userController = require('../controllers/userController');
+const { body } = require('express-validator');
 
-const { body } = require("express-validator");
+// Middleware para verificar si el usuario está autenticado
+function isAuthenticated(req, res, next) {
+  if (req.session.user) {
+    return next();
+  } else {
+    return res.redirect('/users/login');
+  }
+}
 
+// Validaciones para el registro y actualización del perfil
 const validations = [
   body("nombre")
     .notEmpty().withMessage("Ingrese nombre de usuario").bail(),
   body("mail")
     .notEmpty().withMessage("Ingrese un e-mail").bail()
-    .isEmail().withMessage("Este mail ya ha sido utilizado").bail(),
+    .isEmail().withMessage("Ingrese un e-mail válido").bail(),
   body("contra")
-    .notEmpty().withMessage("Ingrese una contraseña").bail()
-    .isLength({ min: 4 }).withMessage("La contraseña debe tener mas de 4 caracteres")
+    .optional() // Hacemos que la contraseña sea opcional en la actualización
+    .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
 ];
 
+// Ruta principal
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/profile', userController.index); // Usa el nombre correcto del controlador
+// Ruta para ver el perfil del usuario logueado
+router.get('/profile', isAuthenticated, userController.index);
 
-router.get('/profile/id/:id', userController.index);
+// Ruta para ver el perfil de otro usuario
+router.get('/profile/id/:id', userController.otherProfile);
 
-/* LOGIN mostrar formulario */
+// Rutas para el login
 router.get('/login', userController.login);
-
-// POST de login
 router.post("/login", userController.loginUser);
 
-
-
-/* GET para mostrar formulario register */
+// Rutas para el registro
 router.get('/register', userController.register);
-
-/* POST para capturar la info del formulario */
 router.post("/register", validations, userController.store);
 
-// GET de editar perfil
-router.get('/profile-edit/:idPerfil', userController.edit);
+// Rutas para editar el perfil
+router.get('/profile-edit/:idPerfil', isAuthenticated, userController.edit);
+router.post("/update", isAuthenticated, validations, userController.update);
 
-// POST para actualizar perfil
-router.post("/update", validations, userController.update);
-
+// Ruta para el logout
 router.post('/logout', userController.logout);
-
-router.get('/profile', userController.index);
-
-router.get('/profile/id/:id', userController.otherProfile);
 
 module.exports = router;
