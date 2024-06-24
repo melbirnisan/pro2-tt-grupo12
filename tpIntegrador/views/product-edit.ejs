@@ -13,53 +13,57 @@
   <!-- /Header -->
 
   <!-- Editar Perfil -->
-  <section class="info-usuario container products-wrapper">
+  <div class="container products-wrapper">
     <div class="row">
-      <div class="img-container offset-3 col-2">
-        <img id="profileImage" src="<%= perfil.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+      <div class="col-12">
+        <h2 class="products-title">Editar Producto</h2>
       </div>
-      <div class="data-container col-6">
-        <form id="profileForm" action="/users/update" method="POST">
-          <input type="hidden" name="id" value="<%= perfil.id %>">
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" value="<%= perfil.nombre %>" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="mail">Email</label>
-            <input type="email" id="mail" name="mail" value="<%= perfil.mail %>" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="contra">Nueva Contraseña</label>
-            <input type="password" id="contra" name="contra" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="fotoPerfil">Foto de Perfil</label>
-            <input type="file" id="fotoPerfil" name="fotoPerfil" class="form-control">
-            <input type="hidden" id="fotoPerfilBase64" name="fotoPerfilBase64">
-          </div>
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </form>
-      </div>
+
+      <form  action="/product/edit" method="POST">
+        <input type="hidden" name="id" value="<%= productos.id %>">
+        <input type="hidden" name="idUsuario" value="<%= productos.usuario.id %>">
+
+        <label for="nombreProd">Nombre del producto</label><br>
+        <input type="text" id="nombreProducto" name="nombreProducto"
+          value="<%= (locals.old && locals.old.nombreProducto !== undefined) ? locals.old.nombreProducto : (productos && productos.nombreProducto) %>"><br>
+        <% if (locals.errors && errors.nombreProducto) { %>
+          <p class="feedback">
+            <%= errors.nombreProd.msg %>
+          </p>
+          <% } %>
+
+            <label for="fotoProducto">Imagen</label><br>
+            <input  type="text" id="imagen"
+              name="fotoProducto"
+              value="<%= (locals.old && locals.old.fotoProducto !== undefined) ? locals.old.fotoProducto : (productos && productos.fotoProducto) %>"><br>
+            <% if (locals.errors && errors.fotoProducto) { %>
+              <p class="feedback">
+                <%= errors.imagenProd.msg %>
+              </p>
+              <% } %>
+
+                <label class="form-label"
+                  for="descripcion">Descripción</label><br>
+                <textarea  id="descripcion" name="descripcion"
+                  rows="4"><%= (locals.old && locals.old.descripcion !== undefined) ? locals.old.descripcion : (productos && productos.descripcion) %></textarea><br>
+                <% if (locals.errors && errors.descripcion) { %>
+                  <p class="feedback">
+                    <%= errors.descripcion.msg %>
+                  </p>
+                  <% } %>
+
+                    <button type="submit"
+                      class="buy-now-button botonRegister">Aceptar
+                      Cambios</button>
+      </form>
     </div>
-  </section>
+  </div>
+
   <!-- /Editar Perfil -->
 
   <!-- footer -->
   <%- include('./partials/footer') %>
   <!-- /footer -->
 
-  <script>
-    document.getElementById('fotoPerfil').addEventListener('change', function() {
-      const reader = new FileReader();
-      reader.onload = function() {
-        document.getElementById('fotoPerfilBase64').value = reader.result;
-        document.getElementById('profileImage').src = reader.result;
-      }
-      reader.readAsDataURL(this.files[0]);
-    });
-  </script>
 </body>
 </html>
-
-

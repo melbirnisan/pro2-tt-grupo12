@@ -26,5 +26,8 @@ router.post("/delete", productController.delete);
 
 router.post("/id/:id", comsValidations, productController.addComment)
 
+router.post('/editProduct', productController.formUpdate);
+
+router.post('/edit', validations, productController.edit);
 
 module.exports = router; 
