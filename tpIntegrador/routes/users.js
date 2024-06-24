@@ -15,6 +15,18 @@ const validations = [
     .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
 ];
 
+
+  const editValidations = [
+    body("nombre")
+      .notEmpty().withMessage("Ingrese nombre de usuario"),
+    body("mail")
+      .notEmpty().withMessage("Ingrese un e-mail")
+      .isEmail().withMessage("Ingrese un e-mail válido"),
+    body("contra")
+      .optional() // Hacemos que la contraseña sea opcional en la actualización
+      .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
+  ];
+
 // Ruta principal
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -58,16 +70,18 @@ router.post("/register", validations, function (req, res, next) {
   }
 });
 
-// Rutas para editar el perfil
 router.get('/profile-edit/:idPerfil', function (req, res, next) {
   userController.edit(req, res);
 });
 
-router.post("/update", validations, function (req, res, next) {
+router.post("/update", editValidations, function (req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    // Si hay errores de validación, manejarlos adecuadamente
-    return res.status(400).json({ errors: errors.array() });
+    return res.render("profile-edit", {
+      errors: errors.array(),
+      old: req.body,
+      perfil: req.body
+    });
   } else {
     userController.update(req, res);
   }

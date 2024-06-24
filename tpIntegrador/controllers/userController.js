@@ -127,36 +127,59 @@ const users = {
       });
     }
   },
+  
   update: function (req, res) {
     let errors = validationResult(req);
-    if (errors.isEmpty()) {
-      let form = req.body;
-      let updateData = {
-        nombre: form.nombre,
-        mail: form.mail,
-      };
-      if (form.contra) {
-        updateData.contrasenia = bcrypt.hashSync(form.contra, 10);
-      }
-      let filtrado = {
-        where: {
-          id: form.id
-        }
-      };
-      datos.Usuario.update(updateData, filtrado)
-        .then(function (result) {
-          return res.redirect("/users/profile/id/" + form.id);
-        })
-        .catch(function (err) {
-          return console.log(err);
-        });
-    } else {
+    if (!errors.isEmpty()) {
       return res.render("profile-edit", {
-        errors: errors.mapped(),
+        errors: errors.array(),
         old: req.body,
         perfil: req.body
       });
     }
+
+    // Extraer datos del formulario
+    let form = req.body;
+
+    // Preparar datos para la actualización
+    let updateData = {
+      nombre: form.nombre,
+      mail: form.mail,
+      fechaNacimiento: form.fecha,
+      dni: form.dni,
+    };
+
+    // Hashear y actualizar la contraseña si se proporciona
+    if (form.contra && form.contra.length > 0) {
+      updateData.contrasenia = bcrypt.hashSync(form.contra, 10);
+    }
+
+    // Actualizar la foto de perfil si se proporciona
+    if (form.fotoPerfil && form.fotoPerfil.length > 0) {
+      updateData.fotoPerfil = form.fotoPerfil;
+    }
+
+    // Filtro para la actualización basada en el ID del usuario
+    let filtrado = {
+      where: {
+        id: form.id
+      }
+    };
+
+    // Ejecutar la actualización en la base de datos
+    datos.Usuario.update(updateData, filtrado)
+      .then(function (result) {
+        // Redirigir al perfil actualizado
+        return res.redirect("/users/profile/id/" + form.id);
+      })
+      .catch(function (err) {
+        console.error('Error al actualizar el perfil:', err);
+        return res.render("profile-edit", {
+          error: "Error al actualizar el perfil. Por favor, inténtalo de nuevo.",
+          old: req.body,
+          perfil: req.body
+        });
+      });
   },
   logout: function (req, res, next) {
     req.session.destroy()
