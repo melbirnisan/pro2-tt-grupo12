@@ -81,7 +81,7 @@ const productController = {
         }
     },
 
-    addComment: function(req, res) {
+    addComment: function(req,res) {
         let form = req.body;
         let errors = validationResult(req);
 
@@ -140,7 +140,38 @@ const productController = {
             .catch((err) => {
                 return console.log(err);
             });
+
     },
+
+
+    destroy: function (req, res) {
+        let form = req.body;
+        let filtrado = {
+            where: {
+                id: form.id
+            }
+        }
+
+        if (req.session.user != undefined) {
+            let id = req.session.user.id;
+            if (form.idUsuario == id) {
+                datos.Producto.destroy(filtrado)
+                    .then((result) => {
+                        return res.redirect("/");
+                    })
+                    .catch((err) => {
+                        return console.log(err);
+                    });
+            }
+            else {
+                return res.redirect("/users/profile/id/" + id);
+            }
+        }
+        else {
+            return res.redirect("/users/login");
+        }
+    },
+
 
     edit: function(req, res) {
         let form = req.body;

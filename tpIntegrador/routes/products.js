@@ -22,7 +22,7 @@ router.get("/add", productController.add);
 
 router.post("/add", validations, productController.store)
 
-router.post("/delete", productController.delete);
+router.post('/delete', productController.destroy);
 
 router.post("/id/:id", comsValidations, productController.addComment)
 
