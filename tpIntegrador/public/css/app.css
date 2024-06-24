@@ -148,6 +148,7 @@ hr {
   border: 0px;
   cursor: pointer;
   font-size: 1em;
+  font-family: var(--base-font-family);
   color: #f4efe6;
   text-decoration: underline;
 }
@@ -276,6 +277,22 @@ hr {
 .noresultado {
   text-align: center;
   font-size: large;
+}
+
+.productAdd{
+  background-color: #162a2c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: var(--base-font-family);
+  font-weight: 300;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 /*====== Footer ======*/
@@ -461,6 +478,21 @@ hr {
   padding-left: 10px;
 }
 
+.comButton{
+  background-color: #162a2c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: var(--base-font-family);
+  font-weight: 300;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 /*====== Formularios ======*/
 .form-label {
@@ -581,8 +613,7 @@ textarea.form-input {
     font-weight: 300;
     margin-top: 10px;
     cursor: pointer;
-    border-radius: 5px;
-  }
+    border-radius: 5px;  }
 
 /*====== Profile ======*/
 .info-usuario{
@@ -608,6 +639,28 @@ textarea.form-input {
   color: #fff;
 }
 
+.profile-edit {
+  font-size: large;
+  font-weight: 600;
+  color: #162a2c;
+  text-align: center;
+}
+
+.cambioButton{
+  background-color: #162a2c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: var(--base-font-family);
+  font-weight: 300;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
