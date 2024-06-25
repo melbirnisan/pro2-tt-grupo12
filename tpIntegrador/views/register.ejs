@@ -13,15 +13,18 @@
   <!-- Formulario de registro -->
   <div class="container">
     <br> 
-    <h2 class = "register">Registrate</h2>
-    <% if (locals.error) { %>
-      <p class="error"><%= locals.error %></p>
-    <% } %>
-    <% if (locals.errors) { %>
-      <% locals.errors.forEach(error => { %>
-        <p class="error"><%= error.msg %></p>
-      <% }); %>
-    <% } %>
+    <div class="container">
+      <br> 
+      <h2 class="register">Registrate</h2>
+      <% if (locals.error) { %>
+          <p class="error"><%= locals.error %></p>
+      <% } %>
+      <% if (locals.errors) { %>
+          <% for (let i = 0; i < locals.errors.length; i++) { %>
+              <p class="error"><%= locals.errors[i].msg %></p>
+          <% } %>
+      <% } %>
+  </div>
     <form action="/users/register" method="POST">
       <div>
         <input id="mail" type="email" name="mail" value="<%= locals.old ? locals.old.mail : '' %>" placeholder="Email" required>
@@ -30,7 +33,7 @@
         <input id="nombre" type="text" name="nombre" value="<%= locals.old ? locals.old.nombre : '' %>" placeholder="Usuario" required>
       </div> <br> 
       <div>
-        <input id="contra" type="password" name="contra" value="" placeholder="Contraseña" required>
+        <input id="contrasenia" type="password" name="contrasenia" value="" placeholder="Contraseña" required>
       </div> <br> 
       <div>
         <input id="fecha" type="date" name="fecha" value="<%= locals.old ? locals.old.fecha : '' %>" placeholder="Fecha de Nacimiento">

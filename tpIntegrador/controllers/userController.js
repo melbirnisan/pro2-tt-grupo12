@@ -117,7 +117,7 @@ const users = {
         } else {
           let usuario = {
             mail: form.mail,
-            contrasenia: bcrypt.hashSync(form.contra, 10),
+            contrasenia: bcrypt.hashSync(form.contrasenia, 10),
             nombre: form.nombre,
             fechaNacimiento: form.fecha,
             dni: form.dni,
@@ -159,8 +159,8 @@ const users = {
       dni: form.dni,
     };
 
-    if (form.contra && form.contra.length > 0) {
-      updateData.contrasenia = bcrypt.hashSync(form.contra, 10);
+    if (form.contrasenia && form.contrasenia.length > 0) {
+      updateData.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
     }
 
     let filtrado = {

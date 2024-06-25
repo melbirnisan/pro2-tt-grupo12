@@ -25,17 +25,27 @@
       <div class="data-container col-6">
         <form action="/users/update" method="POST">
           <input type="hidden" name="id" value="<%= perfil.id %>">
+          
           <div class="form-group"><br>
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" value="<%= perfil.nombre %>" class="form-control">
+            <% if (locals.errors && errors.nombre) { %>
+              <p class = “error” > <%= errors.nombre.msg %> </p>
+            <% } %>
           </div> <br>
           <div class="form-group">
             <label for="mail">Email</label>
             <input type="email" id="mail" name="mail" value="<%= perfil.mail %>" class="form-control">
+            <% if (locals.errors && errors.mail) { %>
+              <p class = “error” > <%= errors.mail.msg %> </p>
+            <% } %>
           </div><br>
           <div class="form-group">
-            <label for="contra">Contraseña</label>
-            <input type="password" id="contra" name="contra" class="form-control">
+            <label for="contrasenia">Contraseña</label>
+            <input type="password" id="contrasenia" name="contrasenia" class="form-control">
+            <% if (locals.errors && errors.contrasenia) { %>
+              <p class = “error” > <%= errors.contrasenia.msg %> </p>
+            <% } %>
           </div><br>
           <button type="submit" class="cambioButton">Guardar Cambios</button>
         </form>
