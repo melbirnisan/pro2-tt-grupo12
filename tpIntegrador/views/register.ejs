@@ -14,14 +14,6 @@
   <div class="container">
     <br> 
     <h2 class = "register">Registrate</h2>
-    <% if (locals.error) { %>
-      <p class="error"><%= locals.error %></p>
-    <% } %>
-    <% if (locals.errors) { %>
-      <% locals.errors.forEach(error => { %>
-        <p class="error"><%= error.msg %></p>
-      <% }); %>
-    <% } %>
     <form action="/users/register" method="POST">
       <div>
         <input id="mail" type="email" name="mail" value="<%= locals.old ? locals.old.mail : '' %>" placeholder="Email" required>
