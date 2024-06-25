@@ -44,8 +44,14 @@ const users = {
   },
 
   register: function (req, res, next) {
-    res.render('register', { title: 'Registrarse' });
-  },
+
+    if (req.session.user != undefined) {
+        return res.redirect("/users/profile/id/" + req.session.user.id);
+    }
+    else {
+        return res.render('register', { title: "Register" })
+    };
+},
 
   login: function (req, res, next) {
     res.render('login', { title: 'Ingresar' });

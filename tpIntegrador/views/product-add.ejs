@@ -26,21 +26,20 @@
 				<input type="hidden" name="idUsuario" value="<%= locals.user.id %>">
 
 				<label for="imagen">Imagen:</label><br>
-			   <input type="text" id="imagen" name="fotoProducto" required><br><br>
+			   <input type="text" id="imagen" name="fotoProducto" ><br><br>
 			   <% if (locals.errors && errors.fotoProducto) { %>
 				<p> <%= errors.fotoProducto.msg %> </p>
 				<% } %>	
 		
 		
 				<label for="usuario">Nombre del producto:</label><br>
-				<input type="text" id="nombre" name="nombreProducto" required><br><br>
+				<input type="text" id="nombre" name="nombreProducto" ><br><br>
 				<% if (locals.errors && errors.nombreProducto) { %>
 					<p class = "error" > <%= errors.nombreProducto.msg %> </p>
 				<% } %>	
 		
-		
 				<label for="descripcion">Descripción del producto:</label><br>
-				<textarea id="descripcion" name="descripcion" rows =”4” required> </textarea><br><br>
+				<textarea id="descripcion" name="descripcion" rows =”4” > </textarea><br><br>
 				<% if (locals.errors && errors.descripcion) { %>
 					<p class = "error" > <%= errors.descripcion.msg %> </p>
 				<% } %>	 

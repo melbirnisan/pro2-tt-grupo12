@@ -21,7 +21,7 @@ const validations = [
         })
     }
   ),
-  body("contrsenia")
+  body("contrasenia")
     .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
 ];
 
