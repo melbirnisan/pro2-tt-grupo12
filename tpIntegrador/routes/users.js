@@ -54,10 +54,6 @@ const editValidations = [
 router.get('/login', userController.login);
 router.post('/login', validations, userController.loginUser);
 
-router.get('/register', userController.register);
-router.post('/register', validations, userController.store);
-
-
 // Ruta para ver el perfil de otro usuario
 router.get('/profile/id/:id', userController.otherProfile);
 
@@ -69,7 +65,7 @@ router.post('/login', userController.loginUser);
 // Rutas para el registro
 router.get('/register', userController.register);
 
-router.post('/register', validations, userController.store);
+router.post('/register', userController.store);
 
 // Ruta para editar el perfil
 router.get('/profile-edit/:idPerfil', userController.edit);

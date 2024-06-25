@@ -44,14 +44,8 @@ const users = {
   },
 
   register: function (req, res, next) {
-
-    if (req.session.user != undefined) {
-        return res.redirect("/users/profile/id/" + req.session.user.id);
-    }
-    else {
-        return res.render('register', { title: "Register" })
-    };
-},
+    res.render('register', { title: 'Registrarse' });
+  },
 
   login: function (req, res, next) {
     res.render('login', { title: 'Ingresar' });
@@ -101,49 +95,50 @@ const users = {
   },
 
   store: function (req, res) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+    let errors = validationResult(req);
+
+    if (errors.isEmpty()) {
+      let form = req.body;
+
+      
+      datos.Usuario.findOne({ where: { mail: form.mail } })
+        .then(existingUser => {
+          if (existingUser) {
+            
+            return res.render("register", {
+              title: "Registrarse",
+              error: "Este mail ya ha sido utilizado",
+              old: req.body
+            });
+          } else {
+            
+            let usuario = {
+              mail: form.mail,
+              contrasenia: bcrypt.hashSync(form.contra, 10),
+              nombre: form.nombre,
+              fechaNacimiento: form.fecha,
+              dni: form.dni,
+              fotoPerfil: form.fotoPerfil,
+              createdAt: new Date() 
+            };
+            datos.Usuario.create(usuario)
+              .then((result) => {
+                return res.redirect("/users/login");
+              }).catch((err) => {
+                return console.log(err);
+              });
+          }
+        }).catch(err => {
+          return console.log(err);
+        });
+    } else {
+      
       return res.render("register", {
         title: "Registrarse",
         errors: errors.array(),
         old: req.body
       });
     }
-
-    let form = req.body;
-
-    datos.Usuario.findOne({ where: { mail: form.mail } })
-      .then(existingUser => {
-        if (existingUser) {
-          return res.render("register", {
-            title: "Registrarse",
-            error: "Este mail ya ha sido utilizado",
-            old: req.body
-          });
-        } else {
-          let usuario = {
-            mail: form.mail,
-            contrasenia: bcrypt.hashSync(form.contrasenia, 10),
-            nombre: form.nombre,
-            fechaNacimiento: form.fecha,
-            dni: form.dni,
-            fotoPerfil: form.fotoPerfil,
-            createdAt: new Date()
-          };
-          datos.Usuario.create(usuario)
-            .then((result) => {
-              return res.redirect("/users/login");
-            })
-            .catch((err) => {
-              console.error('Error al crear usuario:', err);
-              return res.status(500).send("Error al registrar usuario");
-            });
-        }
-      })
-      .catch(err => {
-        console.error('Error al buscar usuario existente:', err);
-        return res.status(500).send("Error al buscar usuario existente");
-      });
   },
 
   update: function (req, res) {
