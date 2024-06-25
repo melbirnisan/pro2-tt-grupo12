@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator');
 
 // Validaciones para el registro y actualización del perfil
 const validations = [
@@ -9,87 +9,74 @@ const validations = [
     .notEmpty().withMessage("Ingrese nombre de usuario").bail(),
   body("mail")
     .notEmpty().withMessage("Ingrese un e-mail").bail()
-    .isEmail().withMessage("Ingrese un e-mail válido").bail(),
-  body("contra")
+    .isEmail().withMessage("Ingrese un e-mail válido").bail()
+    .custom(function (value, { req }) {
+      return datos.Usuario.findOne({
+        where: { mail: value }
+      })
+        .then(function (user) {
+          if (user) {
+            throw new Error("Ya existe un usuario con ese mail")
+          }
+        })
+    }
+  ),
+  body("contrsenia")
+    .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
+];
+
+const editValidations = [
+  body("nombre")
+    .notEmpty().withMessage("Ingrese nombre de usuario"),
+  body("mail")
+    .notEmpty().withMessage("Ingrese un e-mail")
+    .isEmail().withMessage("Ingrese un e-mail válido")
+    .custom(function (value, { req }) {
+      console.log(value, req.session.user.mail, value != req.session.user.mail);
+      if (value == req.session.user.mail) {
+        return true
+      } else {
+        return datos.Usuario.findOne({
+          where: { mail: value }
+        })
+          .then(function (user) {
+            if (user) {
+              throw new Error("Ya existe un usuario con ese mail")
+            }
+          })
+      }
+    }),
+  body("contrasenia")
     .optional() // Hacemos que la contraseña sea opcional en la actualización
     .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
 ];
 
+router.get('/login', userController.login);
+router.post('/login', validations, userController.loginUser);
 
-  const editValidations = [
-    body("nombre")
-      .notEmpty().withMessage("Ingrese nombre de usuario"),
-    body("mail")
-      .notEmpty().withMessage("Ingrese un e-mail")
-      .isEmail().withMessage("Ingrese un e-mail válido"),
-    body("contra")
-      .optional() // Hacemos que la contraseña sea opcional en la actualización
-      .isLength({ min: 4 }).withMessage("La contraseña debe tener más de 4 caracteres")
-  ];
+router.get('/register', userController.register);
+router.post('/register', validations, userController.store);
 
-// Ruta principal
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
-
-// Ruta para ver el perfil del usuario logueado
-router.get('/profile', function (req, res, next) {
-  if (req.session.user) {
-    userController.index(req, res);
-  } else {
-    res.redirect('/users/login');
-  }
-});
 
 // Ruta para ver el perfil de otro usuario
-router.get('/profile/id/:id', function (req, res, next) {
-  userController.otherProfile(req, res);
-});
+router.get('/profile/id/:id', userController.otherProfile);
 
 // Rutas para el login
-router.get('/login', function (req, res, next) {
-  userController.login(req, res);
-});
+router.get('/login', userController.login);
 
-router.post("/login", function (req, res, next) {
-  userController.loginUser(req, res);
-});
+router.post('/login', userController.loginUser);
 
 // Rutas para el registro
-router.get('/register', function (req, res, next) {
-  userController.register(req, res);
-});
+router.get('/register', userController.register);
 
-router.post("/register", validations, function (req, res, next) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    // Si hay errores de validación, manejarlos adecuadamente
-    return res.status(400).json({ errors: errors.array() });
-  } else {
-    userController.store(req, res);
-  }
-});
+router.post('/register', validations, userController.store);
 
-router.get('/profile-edit/:idPerfil', function (req, res, next) {
-  userController.edit(req, res);
-});
+// Ruta para editar el perfil
+router.get('/profile-edit/:idPerfil', userController.edit);
 
-router.post("/update", editValidations, function (req, res, next) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.render("profile-edit", {
-      errors: errors.array(),
-      old: req.body,
-      perfil: req.body
-    });
-  } else {
-    userController.update(req, res);
-  }
-});
+router.post('/update', editValidations, userController.update);
 
 // Ruta para el logout
-router.post('/logout', function (req, res, next) {
-  userController.logout(req, res);
-});
+router.post('/logout', userController.logout);
 
 module.exports = router;

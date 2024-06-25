@@ -16,19 +16,19 @@ const users = {
         res.render('profile', { usuario: respuesta, productos: respuesta.productos, title: 'Profile' });
       })
       .catch(function (error) {
-        return console.log(error);
+        console.error('Error al buscar el perfil:', error);
+        return res.status(500).send("Error al buscar el perfil");
       });
   },
 
   otherProfile: function (req, res, next) {
     let criterio = {
       include: [
-        { association: "productos",  
-          include: [
-          {association: "comentarios"}
-      ] 
+        {
+          association: "productos",
+          include: [{ association: "comentarios" }]
         }
-      ],   
+      ],
       where: {
         id: req.params.id
       }
@@ -38,15 +38,19 @@ const users = {
         res.render('profile', { usuario: respuesta[0], productos: respuesta[0].productos, title: 'Profile' });
       })
       .catch(function (error) {
-        return console.log(error);
+        console.error('Error al buscar el perfil de otro usuario:', error);
+        return res.status(500).send("Error al buscar el perfil de otro usuario");
       });
   },
+
   register: function (req, res, next) {
     res.render('register', { title: 'Registrarse' });
   },
+
   login: function (req, res, next) {
     res.render('login', { title: 'Ingresar' });
   },
+
   loginUser: function (req, res) {
     let form = req.body;
     let filtro = {
@@ -70,10 +74,13 @@ const users = {
         } else {
           return res.render("login", { title: "Ingresar", error: "Usuario no encontrado" });
         }
-      }).catch((err) => {
-        return console.log(err);
+      })
+      .catch((err) => {
+        console.error('Error al intentar iniciar sesión:', err);
+        return res.status(500).send("Error al intentar iniciar sesión");
       });
   },
+
   edit: function (req, res, next) {
     let idPerfil = req.params.idPerfil;
 
@@ -82,54 +89,59 @@ const users = {
         res.render('profile-edit', { perfil: resultId });
       })
       .catch(function (err) {
-        return console.log(err);
+        console.error('Error al buscar el perfil para editar:', err);
+        return res.status(500).send("Error al buscar el perfil para editar");
       });
   },
+
   store: function (req, res) {
-    let errors = validationResult(req);
-
-    if (errors.isEmpty()) {
-      let form = req.body;
-
-      datos.Usuario.findOne({ where: { mail: form.mail } })
-        .then(existingUser => {
-          if (existingUser) {
-            return res.render("register", {
-              title: "Registrarse",
-              error: "Este mail ya ha sido utilizado",
-              old: req.body
-            });
-          } else {
-            let usuario = {
-              mail: form.mail,
-              contrasenia: bcrypt.hashSync(form.contra, 10),
-              nombre: form.nombre,
-              fechaNacimiento: form.fecha,
-              dni: form.dni,
-              fotoPerfil: form.fotoPerfil,
-              createdAt: new Date()
-            };
-            datos.Usuario.create(usuario)
-              .then((result) => {
-                return res.redirect("/users/login");
-              }).catch((err) => {
-                return console.log(err);
-              });
-          }
-        }).catch(err => {
-          return console.log(err);
-        });
-    } else {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
       return res.render("register", {
         title: "Registrarse",
         errors: errors.array(),
         old: req.body
       });
     }
+
+    let form = req.body;
+
+    datos.Usuario.findOne({ where: { mail: form.mail } })
+      .then(existingUser => {
+        if (existingUser) {
+          return res.render("register", {
+            title: "Registrarse",
+            error: "Este mail ya ha sido utilizado",
+            old: req.body
+          });
+        } else {
+          let usuario = {
+            mail: form.mail,
+            contrasenia: bcrypt.hashSync(form.contra, 10),
+            nombre: form.nombre,
+            fechaNacimiento: form.fecha,
+            dni: form.dni,
+            fotoPerfil: form.fotoPerfil,
+            createdAt: new Date()
+          };
+          datos.Usuario.create(usuario)
+            .then((result) => {
+              return res.redirect("/users/login");
+            })
+            .catch((err) => {
+              console.error('Error al crear usuario:', err);
+              return res.status(500).send("Error al registrar usuario");
+            });
+        }
+      })
+      .catch(err => {
+        console.error('Error al buscar usuario existente:', err);
+        return res.status(500).send("Error al buscar usuario existente");
+      });
   },
-  
+
   update: function (req, res) {
-    let errors = validationResult(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render("profile-edit", {
         errors: errors.array(),
@@ -138,10 +150,8 @@ const users = {
       });
     }
 
-    // Extraer datos del formulario
     let form = req.body;
 
-    // Preparar datos para la actualización
     let updateData = {
       nombre: form.nombre,
       mail: form.mail,
@@ -149,45 +159,70 @@ const users = {
       dni: form.dni,
     };
 
-    // Hashear y actualizar la contraseña si se proporciona
     if (form.contra && form.contra.length > 0) {
       updateData.contrasenia = bcrypt.hashSync(form.contra, 10);
     }
 
-    // Actualizar la foto de perfil si se proporciona
-    if (form.fotoPerfil && form.fotoPerfil.length > 0) {
-      updateData.fotoPerfil = form.fotoPerfil;
-    }
-
-    // Filtro para la actualización basada en el ID del usuario
     let filtrado = {
       where: {
         id: form.id
       }
     };
 
-    // Ejecutar la actualización en la base de datos
-    datos.Usuario.update(updateData, filtrado)
-      .then(function (result) {
-        // Redirigir al perfil actualizado
-        return res.redirect("/users/profile/id/" + form.id);
-      })
-      .catch(function (err) {
-        console.error('Error al actualizar el perfil:', err);
-        return res.render("profile-edit", {
-          error: "Error al actualizar el perfil. Por favor, inténtalo de nuevo.",
-          old: req.body,
-          perfil: req.body
+    if (form.mail !== req.session.user.mail) {
+      datos.Usuario.findOne({ where: { mail: form.mail } })
+        .then(existingUser => {
+          if (existingUser) {
+            return res.render("profile-edit", {
+              error: "Ya existe un usuario con ese correo electrónico.",
+              old: req.body,
+              perfil: req.body
+            });
+          } else {
+            datos.Usuario.update(updateData, filtrado)
+              .then(function (result) {
+                return res.redirect("/users/profile/id/" + form.id);
+              })
+              .catch(function (err) {
+                console.error('Error al actualizar el perfil:', err);
+                return res.render("profile-edit", {
+                  error: "Error al actualizar el perfil. Por favor, inténtalo de nuevo.",
+                  old: req.body,
+                  perfil: req.body
+                });
+              });
+          }
+        })
+        .catch(err => {
+          console.error('Error al verificar el correo electrónico:', err);
+          return res.render("profile-edit", {
+            error: "Error al verificar el correo electrónico. Por favor, inténtalo de nuevo.",
+            old: req.body,
+            perfil: req.body
+          });
         });
-      });
+    } else {
+      datos.Usuario.update(updateData, filtrado)
+        .then(function (result) {
+          return res.redirect("/users/profile/id/" + form.id);
+        })
+        .catch(function (err) {
+          console.error('Error al actualizar el perfil:', err);
+          return res.render("profile-edit", {
+            error: "Error al actualizar el perfil. Por favor, inténtalo de nuevo.",
+            old: req.body,
+            perfil: req.body
+          });
+        });
+    }
   },
+
   logout: function (req, res, next) {
-    req.session.destroy()
-    res.clearCookie("idUsuario")
+    req.session.destroy();
+    res.clearCookie("idUsuario");
     return res.redirect("/");
   },
 };
 
-/* exportar el modulo */
 module.exports = users;
 
